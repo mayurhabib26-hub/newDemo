@@ -18,8 +18,8 @@ export const COMPANY_DETAILS: CompanyDetails = {
   phone: '+14377703399',
   displayPhone: '+1 (437) 770-3399',
   email: 'info@masterpropertycare.ca',
-  instagramHandle: '@masterpropertycare',
-  instagramUrl: 'https://instagram.com/masterpropertycare',
+  instagramHandle: '@masterpropertycare.ca',
+  instagramUrl: 'https://www.instagram.com/masterpropertycare.ca/',
   serviceAreaName: 'Greater Toronto Area & Ontario',
   primaryCities: [
     'Toronto',
@@ -358,7 +358,7 @@ export const INSTAGRAM_REELS = [
     caption: 'Precision miters and waterproof membrane inspection before final glass installation in Toronto.',
     thumbnail: '/images/bathroom2.jpg',
     likes: 'Verified Work In Progress',
-    url: 'https://instagram.com/masterpropertycare'
+    url: 'https://www.instagram.com/masterpropertycare.ca/'
   },
   {
     id: 'reel-2',
@@ -366,7 +366,7 @@ export const INSTAGRAM_REELS = [
     caption: 'Aligning the book-matched quartz waterfall edge with laser precision in Mississauga.',
     thumbnail: '/images/kitchen2.jpg',
     likes: 'Verified Work In Progress',
-    url: 'https://instagram.com/masterpropertycare'
+    url: 'https://www.instagram.com/masterpropertycare.ca/'
   },
   {
     id: 'reel-3',
@@ -374,7 +374,7 @@ export const INSTAGRAM_REELS = [
     caption: 'Locking panels with concealed fasteners on high-pitch residential build.',
     thumbnail: '/images/metalroof4.jpeg',
     likes: 'Verified Work In Progress',
-    url: 'https://instagram.com/masterpropertycare'
+    url: 'https://www.instagram.com/masterpropertycare.ca/'
   },
   {
     id: 'reel-4',
@@ -382,7 +382,7 @@ export const INSTAGRAM_REELS = [
     caption: 'Self-leveling compound and underlayment test for zero squeak guarantee.',
     thumbnail: '/images/wooden_tiles.jpg',
     likes: 'Verified Work In Progress',
-    url: 'https://instagram.com/masterpropertycare'
+    url: 'https://www.instagram.com/masterpropertycare.ca/'
   }
 ];
 
