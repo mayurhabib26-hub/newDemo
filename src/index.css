@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-obsidian: #0B0B0C;
+    --color-charcoal: #191919;
+    --color-ivory: #F6F3ED;
+    --color-gold-muted: #C7A35B;
+    --color-gold-light: #E2C889;
+    --color-text-dark: #202020;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  h1, h2, h3, .font-serif-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+}
+
+/* Custom design token utility classes */
+.bg-obsidian { background-color: #0B0B0C; }
+.bg-charcoal { background-color: #191919; }
+.bg-ivory { background-color: #F6F3ED; }
+.text-gold-muted { color: #C7A35B; }
+.text-gold-light { color: #E2C889; }
+.text-charcoal { color: #191919; }
+.text-dark { color: #202020; }
+.border-gold-muted { border-color: #C7A35B; }
+.border-gold-light { border-color: #E2C889; }
+
+/* Subtle gold gradient line */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(199, 163, 91, 0) 0%, rgba(199, 163, 91, 0.4) 50%, rgba(199, 163, 91, 0) 100%);
+}
+
+.gold-divider-left {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(199, 163, 91, 0.5) 0%, rgba(199, 163, 91, 0) 100%);
+}

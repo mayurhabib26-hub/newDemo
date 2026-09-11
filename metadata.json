@@ -1,0 +1,6 @@
+{
+  "name": "Master Property Care",
+  "description": "Premium renovation, framing, drywall, flooring, and property care services across the Greater Toronto Area with 24/7 emergency response and expert craftsmanship.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
