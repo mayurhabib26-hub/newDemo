@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { MapPin, ArrowUpRight, Check, SlidersHorizontal } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/companyContent';
 import { BeforeAfterSlider } from './BeforeAfterSlider';
@@ -24,7 +25,13 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
     <section id="work-section" className="relative bg-[#0B0B0C] text-white py-24 lg:py-32 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+        >
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C7A35B]/10 border border-[#C7A35B]/30 text-[#E2C889] text-xs uppercase tracking-widest font-medium mb-3">
               Verified Project Portfolio
@@ -39,11 +46,17 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
           <p className="text-gray-400 text-sm max-w-md leading-relaxed font-light">
             Explore authentic renovations and building envelope projects delivered with architectural care, verified materials, and zero stock substitutions.
           </p>
-        </div>
+        </motion.div>
 
         {/* Featured Project Showcase with Interactive Before / After Comparison */}
         {featuredProject.beforeAfter && (
-          <div className="mb-20 rounded-2xl bg-[#141416] border border-[#C7A35B]/30 p-6 lg:p-10 shadow-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-20 rounded-2xl bg-[#141416] border border-[#C7A35B]/30 p-6 lg:p-10 shadow-2xl"
+          >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               {/* Left Column: Interactive Before/After Component */}
               <div className="lg:col-span-7">
@@ -116,7 +129,7 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* Category Filters */}
@@ -143,8 +156,12 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
             const isWide = idx % 3 === 0;
 
             return (
-              <article
+              <motion.article
                 key={project.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: (idx % 3) * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => onSelectProject(project)}
                 className={`group cursor-pointer rounded-xl overflow-hidden bg-[#141416] border border-white/10 hover:border-[#C7A35B]/50 transition-all duration-300 flex flex-col justify-between ${
                   isWide ? 'md:col-span-2 lg:col-span-2' : ''
@@ -193,7 +210,7 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
                     ))}
                   </div>
                 </div>
-              </article>
+              </motion.article>
             );
           })}
         </div>

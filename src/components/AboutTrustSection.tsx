@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { ShieldCheck, Clock, Award, Phone, CheckCircle } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/companyContent';
 import { SplineScene } from './SplineScene';
@@ -13,8 +14,14 @@ export const AboutTrustSection: React.FC<AboutTrustSectionProps> = ({ onRequestQ
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Founder & Mission Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
-          {/* Left: Founder / Worksite authentic photo */}
-          <div className="lg:col-span-5 relative">
+          {/* Left: Founder / Worksite authentic photo with scroll reveal */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 relative"
+          >
             <div className="relative rounded-2xl overflow-hidden border border-[#C7A35B]/40 shadow-2xl bg-[#141416]">
               <div className="relative">
                 <img
@@ -39,10 +46,16 @@ export const AboutTrustSection: React.FC<AboutTrustSectionProps> = ({ onRequestQ
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right: Verified Company Narrative & Pillars */}
-          <div className="lg:col-span-7 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 space-y-6"
+          >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C7A35B]/10 border border-[#C7A35B]/30 text-[#E2C889] text-xs uppercase tracking-widest font-medium">
               Verified Craftsmanship & Ethics
             </div>
@@ -57,47 +70,29 @@ export const AboutTrustSection: React.FC<AboutTrustSectionProps> = ({ onRequestQ
               Master Property Care Inc. serves homeowners, business owners, and property managers throughout the Greater Toronto Area. We combine hands-on renovation skill with structural discipline—ensuring jobs are completed to Ontario Building Code, cleanly maintained, and delivered with dependable timing.
             </p>
 
-            {/* Core Substantiated Values */}
+            {/* Core Substantiated Values with staggered reveal */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              <div className="p-5 rounded-xl bg-[#141416] border border-white/10 space-y-2">
-                <div className="flex items-center gap-2 text-white font-medium text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#C7A35B]" />
-                  Transparent Communication
-                </div>
-                <p className="text-xs text-gray-400 leading-relaxed font-light">
-                  Direct contact with project management from the initial walkthrough through final punch-list sign-off.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-xl bg-[#141416] border border-white/10 space-y-2">
-                <div className="flex items-center gap-2 text-white font-medium text-sm">
-                  <ShieldCheck className="w-4 h-4 text-[#C7A35B]" />
-                  WSIB & Liability Insured
-                </div>
-                <p className="text-xs text-gray-400 leading-relaxed font-light">
-                  Every crew member is WSIB covered, and our company carries comprehensive commercial general liability insurance.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-xl bg-[#141416] border border-white/10 space-y-2">
-                <div className="flex items-center gap-2 text-white font-medium text-sm">
-                  <Clock className="w-4 h-4 text-[#C7A35B]" />
-                  24/7 GTA Availability
-                </div>
-                <p className="text-xs text-gray-400 leading-relaxed font-light">
-                  Emergency crews available around the clock to contain active leaks, secure structures, and handle urgent repairs.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-xl bg-[#141416] border border-white/10 space-y-2">
-                <div className="flex items-center gap-2 text-white font-medium text-sm">
-                  <Award className="w-4 h-4 text-[#C7A35B]" />
-                  Clean Site Discipline
-                </div>
-                <p className="text-xs text-gray-400 leading-relaxed font-light">
-                  We use dust containment barriers, floor protection, and daily tidy-ups to respect your living or commercial environment.
-                </p>
-              </div>
+              {[
+                { Icon: CheckCircle, title: 'Transparent Communication', desc: 'Direct contact with project management from the initial walkthrough through final punch-list sign-off.' },
+                { Icon: ShieldCheck, title: 'WSIB & Liability Insured', desc: 'Every crew member is WSIB covered, and our company carries comprehensive commercial general liability insurance.' },
+                { Icon: Clock, title: '24/7 GTA Availability', desc: 'Emergency crews available around the clock to contain active leaks, secure structures, and handle urgent repairs.' },
+                { Icon: Award, title: 'Clean Site Discipline', desc: 'We use dust containment barriers, floor protection, and daily tidy-ups to respect your living or commercial environment.' },
+              ].map(({ Icon, title, desc }, i) => (
+                <motion.div
+                  key={title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-30px' }}
+                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  className="p-5 rounded-xl bg-[#141416] border border-white/10 space-y-2"
+                >
+                  <div className="flex items-center gap-2 text-white font-medium text-sm">
+                    <Icon className="w-4 h-4 text-[#C7A35B]" />
+                    {title}
+                  </div>
+                  <p className="text-xs text-gray-400 leading-relaxed font-light">{desc}</p>
+                </motion.div>
+              ))}
             </div>
 
             <div className="pt-4 flex items-center gap-4">
@@ -116,13 +111,19 @@ export const AboutTrustSection: React.FC<AboutTrustSectionProps> = ({ onRequestQ
                 Call {COMPANY_DETAILS.displayPhone}
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Supporting Architectural Material Study (Spline component integration) */}
-        <div className="mt-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-16"
+        >
           <SplineScene />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

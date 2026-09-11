@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 import { PROCESS_STAGES } from '../data/companyContent';
 
@@ -13,7 +14,13 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onRequestQuote }
     <section className="relative bg-[#F6F3ED] text-[#202020] py-24 lg:py-32 border-t border-[#e8e4d8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
-        <div className="max-w-2xl mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-2xl mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C7A35B]/15 text-[#8c6b24] text-xs uppercase tracking-widest font-semibold mb-3">
             Our Renovation Methodology
           </div>
@@ -25,7 +32,7 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onRequestQuote }
           <p className="text-[#444] text-base leading-relaxed mt-4 font-light">
             Renovations succeed on planning, clear communication, and site respect. Here is how Master Property Care manages your project from consultation to final handover.
           </p>
-        </div>
+        </motion.div>
 
         {/* Desktop Sticky Image + Stage Walkthrough */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -62,8 +69,12 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onRequestQuote }
               const isActive = activeStepIndex === idx;
 
               return (
-                <div
+                <motion.div
                   key={stage.step}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.55, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   onClick={() => setActiveStepIndex(idx)}
                   className={`p-6 sm:p-8 rounded-2xl transition-all duration-300 cursor-pointer border ${
                     isActive
@@ -118,7 +129,7 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onRequestQuote }
                       </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               );
             })}
 

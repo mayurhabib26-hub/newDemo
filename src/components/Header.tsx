@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, useScroll } from 'motion/react';
 import { Phone, Menu, X, ArrowRight, Shield } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/companyContent';
 import { PageRoute } from '../types';
@@ -12,6 +13,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate, onRequestQuote }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +32,12 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate, onRequ
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none">
+      {/* Dynamic Gold Scroll Progress Indicator */}
+      <motion.div
+        style={{ scaleX: scrollYProgress, transformOrigin: '0%' }}
+        className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C7A35B] via-[#E2C889] to-[#C7A35B] shadow-[0_0_8px_rgba(199,163,91,0.5)] z-[60] pointer-events-none"
+      />
+
       {/* Top micro announcement bar */}
       <div
         className={`transition-all duration-300 pointer-events-auto overflow-hidden ${

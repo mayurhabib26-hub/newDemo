@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, ChevronDown, ShieldCheck, Clock, MapPin } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/companyContent';
 import { UnicornEffect } from './UnicornEffect';
@@ -11,14 +11,27 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onRequestQuote, onExploreWork, readyToAnimate = true }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '25%']);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.75], [0, 60]);
+
   return (
-    <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center bg-[#0B0B0C] overflow-hidden">
-      {/* Background Image Layer with authentic Master Property Care interior image */}
-      <div className="absolute inset-0 z-0">
+    <section
+      ref={sectionRef}
+      className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center bg-[#0B0B0C] overflow-hidden"
+    >
+      {/* Background Image Layer with authentic Master Property Care interior image with smooth scroll parallax */}
+      <motion.div style={{ y: backgroundY }} className="absolute inset-0 z-0">
         <img
           src="/images/kitchen1.jpg"
           alt="Architectural Master Kitchen Renovation by Master Property Care"
-          className="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out"
+          className="w-full h-full object-cover object-center transform scale-110 transition-transform duration-1000 ease-out"
           loading="eager"
         />
 
@@ -28,10 +41,13 @@ export const Hero: React.FC<HeroProps> = ({ onRequestQuote, onExploreWork, ready
 
         {/* Ambient subtle gold lighting effect via isolated UnicornEffect */}
         <UnicornEffect className="z-10 opacity-70" />
-      </div>
+      </motion.div>
 
-      {/* Main Hero Content */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 w-full">
+      {/* Main Hero Content with Scroll Motion */}
+      <motion.div
+        style={{ opacity: contentOpacity, y: contentY }}
+        className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 w-full"
+      >
         <div className="max-w-3xl">
           {/* Verified Service Area & Credentials Pill */}
           <motion.div
@@ -113,7 +129,7 @@ export const Hero: React.FC<HeroProps> = ({ onRequestQuote, onExploreWork, ready
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Discreet Scroll Indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-2 text-gray-400 text-[11px] uppercase tracking-widest pointer-events-none">

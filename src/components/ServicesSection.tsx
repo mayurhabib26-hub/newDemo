@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { ArrowUpRight, CheckCircle2, ShieldAlert } from 'lucide-react';
 import { SERVICES_DATA } from '../data/companyContent';
 import { ServiceItem } from '../types';
@@ -13,8 +14,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
     <section id="services-section" className="relative bg-[#F6F3ED] text-[#202020] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Sticky Editorial Heading */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
+          {/* Left Column: Sticky Editorial Heading with Scroll Reveal */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 lg:sticky lg:top-28 space-y-6"
+          >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C7A35B]/15 text-[#8c6b24] text-xs uppercase tracking-widest font-semibold">
               Our Renovation Services
             </div>
@@ -50,7 +57,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                 <ArrowUpRight className="w-4 h-4 text-[#8c6b24]" />
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Image-led numbered service entries with alternating layouts */}
           <div className="lg:col-span-7 space-y-12">
@@ -58,8 +65,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               const isEven = index % 2 === 0;
 
               return (
-                <article
+                <motion.article
                   key={service.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: 0.65, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   className="group relative bg-white rounded-2xl overflow-hidden border border-[#e5e0d3] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row"
                 >
                   {/* Service Image Container */}
@@ -125,7 +136,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                       </span>
                     </div>
                   </div>
-                </article>
+                </motion.article>
               );
             })}
           </div>
