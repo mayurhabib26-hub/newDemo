@@ -29,9 +29,15 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate, onRequ
   };
 
   return (
-    <>
+    <div className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none">
       {/* Top micro announcement bar */}
-      <div className="bg-[#0e0e10] border-b border-white/5 py-1.5 px-4 text-xs text-gray-300">
+      <div
+        className={`transition-all duration-300 pointer-events-auto overflow-hidden ${
+          isScrolled
+            ? 'max-h-0 opacity-0 -translate-y-2 py-0 border-transparent'
+            : 'max-h-12 opacity-100 bg-black/40 backdrop-blur-sm border-b border-white/10 py-1.5 px-4 text-xs text-gray-300'
+        }`}
+      >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -58,10 +64,10 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate, onRequ
 
       {/* Main Header */}
       <header
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-          isScrolled
-            ? 'bg-[#0B0B0C]/95 backdrop-blur-md border-b border-[#C7A35B]/20 py-3 shadow-xl'
-            : 'bg-[#0B0B0C]/80 backdrop-blur-sm border-b border-white/10 py-4'
+        className={`w-full pointer-events-auto transition-all duration-300 ${
+          isScrolled || mobileMenuOpen
+            ? 'bg-[#0B0B0C]/90 backdrop-blur-md border-b border-[#C7A35B]/20 py-3 shadow-xl'
+            : 'bg-transparent border-b border-white/10 py-4 sm:py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -277,6 +283,6 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate, onRequ
           </div>
         )}
       </header>
-    </>
+    </div>
   );
 };

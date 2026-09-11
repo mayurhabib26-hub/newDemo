@@ -136,7 +136,7 @@ export default function App() {
       />
 
       {/* Main Dynamic View Area */}
-      <main className="flex-1 w-full">
+      <main className={`flex-1 w-full ${currentRoute !== 'home' ? 'pt-24 sm:pt-28' : ''}`}>
         {currentRoute === 'home' && (
           <>
             {/* Cinematic Hero */}

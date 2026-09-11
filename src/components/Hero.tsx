@@ -31,7 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ onRequestQuote, onExploreWork, ready
       </div>
 
       {/* Main Hero Content */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 w-full">
         <div className="max-w-3xl">
           {/* Verified Service Area & Credentials Pill */}
           <motion.div
